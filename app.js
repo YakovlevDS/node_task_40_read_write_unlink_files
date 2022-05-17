@@ -1,12 +1,17 @@
-let nodePath = process.argv[0];
-let appPath = process.argv[1];
-let name = process.argv[2];
-let age = process.argv[3];
+const fs = require("fs");
+ 
+// асинхронное чтение
+fs.readFile("hello.txt", "utf8", (e, data)=>{
+                if(e) throw e; 
+                console.log(data); 
+});
+ 
+fs.writeFile("hello.txt", "Hi!", e=>{
+    if(e) throw e; 
+    console.log("Содержимое файла:");
+});
 
-console.log("nodePath: " + nodePath);
-console.log("appPath: " + appPath);
-console.log();
-console.log("name: " + name);
-console.log("age: " + age);
-
-// node app.js Tom 23
+fs.unlink("hello.txt", e => {
+    if (e) console.log(e);   
+    else console.log("hello.txt was deleted");
+  });
